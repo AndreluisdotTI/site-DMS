@@ -16,9 +16,7 @@ function openQualifiedWhatsApp(message) {
 
   if (!qualifiedWhatsAppTracked && typeof window.gtag === 'function') {
     qualifiedWhatsAppTracked = true;
-    window.gtag('event', 'conversion', {
-      send_to: 'AW-18557775987/zqdYCM-Pr7UdEPPghJFF'
-    });
+    gtag_report_conversion();
   }
   return true;
 }
