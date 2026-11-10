@@ -60,6 +60,8 @@
     heading?.setAttribute('tabindex','-1');heading?.focus({preventScroll:true});
   };
   const open=trigger=>{
+    resetQualifiedWhatsAppTracking();
+    
     Object.keys(answers).forEach(key=>delete answers[key]);
     modal.querySelectorAll('.qual-choice').forEach(button=>button.classList.remove('selected'));
     form.reset();returnFocus=trigger||document.activeElement;
@@ -99,6 +101,7 @@
       ...Object.entries(answers).map(([key,value])=>`${form.querySelector(`[name="${CSS.escape(key)}"]`)?.dataset.label||answerLabels[key]||key}: ${value}`),
       'Enviado pelo site DMS Ambiental.'
     ].join('\n');
-    window.open('https://wa.me/558004000442?text='+encodeURIComponent(message),'_blank','noopener');
+    if (!openQualifiedWhatsApp(message)) return;
+    
   });
 })();
